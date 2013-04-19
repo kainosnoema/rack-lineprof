@@ -18,8 +18,11 @@ config.middleware.use Rack::Lineprof
 
 Use query parameter to profile a request:
 ```sh
-curl 'http://localhost:3000/slow-page?lineprof=app/models'
+curl 'http://localhost:3000/slow-page?lineprof=active_support/core_ext/string'
 ```
+
+![rack-lineprof screenshot](http://f.cl.ly/items/2q2r321e1j1X3X47303F/Screen%20Shot%202013-04-18%20at%209.58.36%20PM.png)
+
 
 ## License
 
