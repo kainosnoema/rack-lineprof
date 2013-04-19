@@ -27,11 +27,8 @@ module Rack
       response = nil
       profile = lineprof(%r{#{matcher}}) { response = @app.call env }
 
-      Thread.new do
-        sleep 0.01
-        puts Term::ANSIColor.blue("\n[Rack::Lineprof] #{'=' * 63}") + "\n\n" +
-             format_profile(profile) + "\n"
-      end
+      puts Term::ANSIColor.blue("\n[Rack::Lineprof] #{'=' * 63}") + "\n\n" +
+           format_profile(profile) + "\n"
 
       response
     end
