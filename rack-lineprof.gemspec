@@ -3,7 +3,8 @@ $: << File.expand_path('../lib', __FILE__)
 Gem::Specification.new do |s|
   s.name        = 'rack-lineprof'
   s.version     = '0.0.1'
-  s.description = 'Rack middleware for rblineprof'
+  s.description = 'Rack middleware for rblineprof (github.com/tmm1/rblineprof)'
+  s.summary     = 'Makes line-by-line source code profiling easy.'
   s.license     = 'MIT'
 
   s.files       = Dir['lib/**/*']
