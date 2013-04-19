@@ -36,16 +36,16 @@ module Rack
             ms = sample[0] / 1000.0
             calls = sample[2]
 
-            clocked = ms >= 0.2 # info
+            clocked = ms >= thresholds[NOMINAL]
             near_clocked = (line-context..line+context).any? do |near|
               near = [1, near].max
               next unless raw_samples[near]
-              (raw_samples[near][0] / 1000.0) >= 0.2 # info
+              (raw_samples[near][0] / 1000.0) >= thresholds[NOMINAL]
             end
 
             next unless clocked or near_clocked
 
-            threshold = thresholds.detect { |boundary, _| ms > boundary }
+            threshold = thresholds.invert.detect { |th, _| ms > th }
             level = threshold ? threshold.last : CONTEXT
 
             next unless code = source_lines[line - 1]
@@ -75,7 +75,7 @@ module Rack
           CRITICAL => 50,
           WARNING  => 5,
           NOMINAL  => 0.2
-        }.merge(options.fetch :thresholds, {}).invert
+        }.merge(options.fetch :thresholds, {})
       end
 
     end
