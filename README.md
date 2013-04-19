@@ -3,6 +3,23 @@
 Rack middleware for [rblineprof](https://github.com/tmm1/rblineprof).
 Makes line-by-line source code profiling easy.
 
+## Example
+
+Add to Gemfile:
+```rb
+gem 'rack-lineprof'
+```
+
+Add middleware to any Rack app (e.g. config/routes.rb):
+```rb
+config.middleware.use Rack::Lineprof
+```
+
+Use query parameter to profile a request:
+```sh
+curl 'http://localhost:3000/slow-page?lineprof=app/models'
+```
+
 ## License
 
 (The MIT License)
