@@ -16,7 +16,7 @@ module Rack
         prev_line = samples.first.line - 1
         samples.each do |sample|
           if sample.line != prev_line + 1
-            formatted << color.intense_black(' ' * 10 + '.' * 7) + "\n"
+            formatted << color.intense_black(' ' * 14 + '.' * 7) + "\n"
           end
           prev_line = sample.line
 
@@ -34,6 +34,7 @@ module Rack
             next if line == 0 # drop file info
 
             ms = sample[0] / 1000.0
+            calls = sample[2]
 
             clocked = ms >= 0.2 # info
             near_clocked = (line-context..line+context).any? do |near|
@@ -47,16 +48,16 @@ module Rack
             threshold = thresholds.detect { |boundary, _| ms > boundary }
             level = threshold ? threshold.last : CONTEXT
 
-            next unless code = source_code[line - 1]
-            parsed << Sample.new(line, ms, code, level)
+            next unless code = source_lines[line - 1]
+            parsed << Sample.new(ms, calls, line, code, level)
           end
 
           parsed
         end
       end
 
-      def source_code
-        @source_code ||= ::File.open(file_name, 'r').to_a
+      def source_lines
+        @source_lines ||= ::File.open(file_name, 'r').to_a
       end
 
       private

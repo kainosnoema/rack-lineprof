@@ -19,7 +19,7 @@ module Rack
     end
 
     def call env
-      request = Rack::Request.new(env)
+      request = Rack::Request.new env
       matcher = request.params['lineprof']
 
       return @app.call env unless matcher
