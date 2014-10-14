@@ -20,7 +20,7 @@ Use query parameter to profile a request:
 curl 'http://localhost:3000/slow-page?lineprof=active_support/core_ext/string'
 ```
 
-Or specify profile target by an option of `use`:
+&hellip; or specify profile target with a middleware option:
 ```rb
 config.middleware.use Rack::Lineprof, profile: 'active_support/core_ext/string'
 ```
@@ -32,7 +32,7 @@ config.middleware.use Rack::Lineprof, profile: 'active_support/core_ext/string'
 
 (The MIT License)
 
-Copyright © 2013 Evan Owen &lt;kainosnoema@gmail.com&gt;
+Copyright © 2014 Evan Owen &lt;kainosnoema@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
