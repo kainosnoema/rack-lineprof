@@ -7,8 +7,7 @@ Makes line-by-line source code profiling easy.
 
 Add to Gemfile:
 ```rb
-gem 'rblineprof', github: 'tmm1/rblineprof' # required until v0.3.1 is pushed
-gem 'rack-lineprof'
+gem 'rack-lineprof', group: :development
 ```
 
 Add middleware to any Rack app (e.g. config/routes.rb):

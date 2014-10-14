@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.email       = %w[kainosnoema@gmail.com]
   s.homepage    = 'https://github.com/kainosnoema/rack-lineprof'
 
-  s.add_dependency 'rack'
-  s.add_dependency 'rblineprof', '~> 0.3.1'
-  s.add_dependency 'term-ansicolor'
+  s.add_dependency 'rack', '~> 1.5'
+  s.add_dependency 'rblineprof', '~> 0.3.6'
+  s.add_dependency 'term-ansicolor', '~> 1.3'
 end
