@@ -1,4 +1,5 @@
 require 'rblineprof'
+require 'logger'
 require 'term/ansicolor'
 
 module Rack
@@ -21,13 +22,14 @@ module Rack
     def call env
       request = Rack::Request.new env
       matcher = request.params['lineprof'] || options[:profile]
+      logger  = options[:logger] || ::Logger.new(STDOUT)
 
       return @app.call env unless matcher
 
       response = nil
       profile = lineprof(%r{#{matcher}}) { response = @app.call env }
 
-      puts Term::ANSIColor.blue("\n[Rack::Lineprof] #{'=' * 63}") + "\n\n" +
+      logger.info Term::ANSIColor.blue("\n[Rack::Lineprof] #{'=' * 63}") + "\n\n" +
            format_profile(profile) + "\n"
 
       response
