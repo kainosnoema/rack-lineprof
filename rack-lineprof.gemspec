@@ -9,8 +9,6 @@ Gem::Specification.new do |s|
 
   s.files       = Dir['lib/**/*']
 
-  s.has_rdoc    = false
-
   s.authors     = ['Evan Owen']
   s.email       = %w[kainosnoema@gmail.com]
   s.homepage    = 'https://github.com/kainosnoema/rack-lineprof'
