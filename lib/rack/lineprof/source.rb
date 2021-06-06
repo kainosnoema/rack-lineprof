@@ -35,6 +35,7 @@ module Rack
 
             ms = sample[0] / 1000.0
             calls = sample[2]
+            allocations = sample[3]
 
             abnormal = ms >= thresholds[NOMINAL]
             near_abnormal = (line-context..line+context).any? do |near|
@@ -49,7 +50,7 @@ module Rack
             level = threshold ? threshold.last : CONTEXT
 
             next unless code = source_lines[line - 1]
-            parsed << Sample.new(ms, calls, line, code, level)
+            parsed << Sample.new(ms, calls, line, code, level, allocations)
           end
 
           parsed

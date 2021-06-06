@@ -1,12 +1,12 @@
 module Rack
   class Lineprof
-    class Sample < Struct.new :ms, :calls, :line, :code, :level
+    class Sample < Struct.new :ms, :calls, :line, :code, :level, :allocations
 
       def format colorize = true
         formatted = if level == CONTEXT
           sprintf "               | % 3i  %s", line, code
         else
-          sprintf "% 6.1fms %5i | % 3i  %s", ms, calls, line, code
+          sprintf "% 6.1fms %5i | % 3i  %s (%s malloc)", ms, calls, line, code, allocations
         end
 
         return formatted unless colorize
