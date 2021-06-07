@@ -13,7 +13,13 @@ module Rack
 
         formatted = file_name.sub(Dir.pwd + '/', '') + "\n"
 
+        prev_line = samples.first.line - 1
         samples.each do |sample|
+          if sample.line != prev_line + 1
+            formatted << color.intense_black(' ' * 14 + '.' * 7) + "\n"
+          end
+          prev_line = sample.line
+
           formatted << sample.format
         end
 

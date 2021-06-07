@@ -6,7 +6,7 @@ module Rack
         formatted = if level == CONTEXT
           sprintf "               | % 3i  %s", line, code
         else
-          sprintf "% 6.1fms %5i | % 3i  %s", ms, calls, line, "#{code} (#{allocations} malloc)"
+          sprintf "% 6.1fms %5i | % 3i  %s", ms, calls, line, "#{code} (#{allocations})"
         end
 
         return formatted unless colorize
