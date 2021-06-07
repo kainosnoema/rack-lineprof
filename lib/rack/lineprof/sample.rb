@@ -4,9 +4,9 @@ module Rack
 
       def format colorize = true
         formatted = if level == CONTEXT
-          sprintf "                          | % 3i  %s", line, code
+          sprintf "                        | % 3i  %s", line, code
         else
-          sprintf "% 6.1fms %5i (%10s) | % 3i  %s", ms, calls, line, allocations, code
+          sprintf "% 6.1fms %5i (%s) | % 3i  %s", ms, calls, line, allocations, code
         end
 
         return formatted unless colorize
